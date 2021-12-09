@@ -40,9 +40,9 @@ public class ModuleDetails extends javax.swing.JFrame {
                 String LECTURER = rs.getString("LECTURER");
                 String START_TIME = rs.getString("TIMESTART");
                 String TIME_END = rs.getString("TIMEEND");
-                String CREDIT_HOUR = rs.getString("CREDIT");
+                String OCC = rs.getString("OCCURENCE");
 
-                String tbData[] = {ACTIVITY, LECTURER, START_TIME, TIME_END, CREDIT_HOUR};
+                String tbData[] = {ACTIVITY, LECTURER, START_TIME, TIME_END, OCC};
                 DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
 
                 tblModel.addRow(tbData);
@@ -53,7 +53,7 @@ public class ModuleDetails extends javax.swing.JFrame {
     }
 
     public void setLabel() {
-        moduleShow.setText("Showing for course: " + wp.getModuleCode());
+        moduleShow.setText("Classes for: " + wp.getModuleCode());
     }
 
     public void setCreditHour() {
@@ -64,7 +64,7 @@ public class ModuleDetails extends javax.swing.JFrame {
             rs = ps.executeQuery();
             while (rs.next()){
                 String OCC = rs.getString("CREDIT");
-                jLabel1.setText("CREDIT HOURS: " + OCC);
+                jLabel1.setText("Credit hours: " + OCC);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -93,7 +93,7 @@ public class ModuleDetails extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ACTIVITY", "LECTURER", "START TIME", "END TIME", "CREDIT HOUR"
+                "ACTIVITY", "LECTURER", "START TIME", "END TIME", "OCCURRENCE"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -101,7 +101,7 @@ public class ModuleDetails extends javax.swing.JFrame {
         moduleShow.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         moduleShow.setText("PLACEHOLDER MODULE DEETS");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("CREDIT HOURS PLACEHOLDER");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -124,7 +124,7 @@ public class ModuleDetails extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
