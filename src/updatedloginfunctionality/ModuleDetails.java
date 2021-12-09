@@ -40,10 +40,9 @@ public class ModuleDetails extends javax.swing.JFrame {
                 String LECTURER = rs.getString("LECTURER");
                 String START_TIME = rs.getString("TIMESTART");
                 String TIME_END = rs.getString("TIMEEND");
-                String OCC = rs.getString("OCCURENCE");
                 String CREDIT_HOUR = rs.getString("CREDIT");
 
-                String tbData[] = {ACTIVITY, LECTURER, START_TIME, TIME_END, OCC, CREDIT_HOUR};
+                String tbData[] = {ACTIVITY, LECTURER, START_TIME, TIME_END, CREDIT_HOUR};
                 DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
 
                 tblModel.addRow(tbData);
@@ -94,7 +93,7 @@ public class ModuleDetails extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ACTIVITY", "LECTURER", "START TIME", "END TIME", "OCCURENCE", "CREDIT HOUR"
+                "ACTIVITY", "LECTURER", "START TIME", "END TIME", "CREDIT HOUR"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
