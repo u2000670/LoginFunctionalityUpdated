@@ -60,7 +60,7 @@
                   <EmptySpace pref="141" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="loginFailedLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="LoginFailedLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="loginBttn" min="-2" pref="86" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="loginBttn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="resetBttn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="loginFailedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LoginFailedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="271" max="32767" attributes="0"/>
               </Group>
@@ -276,7 +276,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="loginFailedLabel">
+        <Component class="javax.swing.JLabel" name="LoginFailedLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="b1" green="65" red="50" type="rgb"/>

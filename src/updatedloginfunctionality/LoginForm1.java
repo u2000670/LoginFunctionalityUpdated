@@ -8,19 +8,18 @@ import javax.swing.JOptionPane;
  * @author Faris Faiz
  */
 public class LoginForm1 extends javax.swing.JFrame {
-    
+
     Connection con = ConnectDatabase.connectdb();
     PreparedStatement ps = null;
     ResultSet rs = null;
     static String userName = "PLACEHOLDER";
-    
+
     //UI stuff
-    
-    public void setUserName(String inputtedUserName){
+    public void setUserName(String inputtedUserName) {
         this.userName = inputtedUserName;
     }
-    
-    public String getUserName(){
+
+    public String getUserName() {
         return userName;
     }
 
@@ -29,9 +28,9 @@ public class LoginForm1 extends javax.swing.JFrame {
      */
     public LoginForm1() {
         initComponents();
-        loginFailedLabel.setVisible(false);
+        LoginFailedLabel.setVisible(false);
         setLocationRelativeTo(null);
-        
+
         ConnectDatabase.connectdb();
     }
 
@@ -54,7 +53,7 @@ public class LoginForm1 extends javax.swing.JFrame {
         resetBttn = new javax.swing.JButton();
         loginBttn = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
-        loginFailedLabel = new javax.swing.JLabel();
+        LoginFailedLabel = new javax.swing.JLabel();
         LeftLoginPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -132,10 +131,10 @@ public class LoginForm1 extends javax.swing.JFrame {
         passwordField.setForeground(new java.awt.Color(244, 247, 252));
         passwordField.setBorder(null);
 
-        loginFailedLabel.setBackground(new java.awt.Color(80, 101, 177));
-        loginFailedLabel.setFont(new java.awt.Font("Readex Pro Medium", 0, 18)); // NOI18N
-        loginFailedLabel.setForeground(new java.awt.Color(114, 30, 53));
-        loginFailedLabel.setText("Login Failed");
+        LoginFailedLabel.setBackground(new java.awt.Color(80, 101, 177));
+        LoginFailedLabel.setFont(new java.awt.Font("Readex Pro Medium", 0, 18)); // NOI18N
+        LoginFailedLabel.setForeground(new java.awt.Color(114, 30, 53));
+        LoginFailedLabel.setText("Login Failed");
 
         javax.swing.GroupLayout rightLoginPanelLayout = new javax.swing.GroupLayout(rightLoginPanel);
         rightLoginPanel.setLayout(rightLoginPanelLayout);
@@ -149,7 +148,7 @@ public class LoginForm1 extends javax.swing.JFrame {
                 .addContainerGap(141, Short.MAX_VALUE)
                 .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(rightLoginPanelLayout.createSequentialGroup()
-                        .addComponent(loginFailedLabel)
+                        .addComponent(LoginFailedLabel)
                         .addGap(18, 18, 18)
                         .addComponent(loginBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -193,7 +192,7 @@ public class LoginForm1 extends javax.swing.JFrame {
                 .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginFailedLabel))
+                    .addComponent(LoginFailedLabel))
                 .addContainerGap(271, Short.MAX_VALUE))
         );
 
@@ -274,19 +273,19 @@ public class LoginForm1 extends javax.swing.JFrame {
     private void loginBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBttnMouseClicked
         String login = "SELECT * FROM logintable WHERE matrix_number = ? AND password = ?";
         try {
-            loginFailedLabel.setVisible(false);
+            LoginFailedLabel.setVisible(false);
             ps = con.prepareStatement(login);
             ps.setString(1, matrixNoField.getText());
             ps.setString(2, String.valueOf(passwordField.getPassword()));
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
 //                JOptionPane.showMessageDialog(null, "Login Successful!");
                 String inputtedUserName = matrixNoField.getText();
                 setUserName(inputtedUserName);
                 dispose();
                 new WelcomePage().setVisible(true);
-            }else{
-                loginFailedLabel.setVisible(true);
+            } else {
+                LoginFailedLabel.setVisible(true);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -297,24 +296,24 @@ public class LoginForm1 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
 //        RegisterUserPage rup = new RegisterUserPage();
+        RegisterForm rf = new RegisterForm();
         dispose();
     }//GEN-LAST:event_registerLinkMouseClicked
 
     private void registerLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLinkMouseEntered
         // TODO add your handling code here:
-        registerLink.setForeground(new java.awt.Color(80,101,177));
+        registerLink.setForeground(new java.awt.Color(80, 101, 177));
     }//GEN-LAST:event_registerLinkMouseEntered
 
     private void registerLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLinkMouseExited
         // TODO add your handling code here:
 
-        registerLink.setForeground(new java.awt.Color(96,111,137));
+        registerLink.setForeground(new java.awt.Color(96, 111, 137));
     }//GEN-LAST:event_registerLinkMouseExited
 
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -349,6 +348,7 @@ public class LoginForm1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LeftLoginPanel;
+    private javax.swing.JLabel LoginFailedLabel;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -357,7 +357,6 @@ public class LoginForm1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton loginBttn;
-    private javax.swing.JLabel loginFailedLabel;
     private javax.swing.JTextField matrixNoField;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel registerLink;
@@ -365,23 +364,3 @@ public class LoginForm1 extends javax.swing.JFrame {
     private javax.swing.JPanel rightLoginPanel;
     // End of variables declaration//GEN-END:variables
 }
-/*
-String login = "SELECT * FROM logintable WHERE username = ? AND password = ?";
-        try {
-            ps = con.prepareStatement(login);
-            ps.setString(1, usernameTextField.getText());
-            ps.setString(2, passwordTextField.getText());
-            rs = ps.executeQuery();
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Login Successful!");
-                String inputtedUserName = usernameTextField.getText();
-                setUserName(inputtedUserName);
-                dispose();
-                new WelcomePage().setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(null, "Login Failed");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-*/
