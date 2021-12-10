@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package updatedloginfunctionality;
 
 import java.sql.*;
@@ -18,6 +14,8 @@ public class LoginForm1 extends javax.swing.JFrame {
     ResultSet rs = null;
     static String userName = "PLACEHOLDER";
     
+    //UI stuff
+    
     public void setUserName(String inputtedUserName){
         this.userName = inputtedUserName;
     }
@@ -31,6 +29,9 @@ public class LoginForm1 extends javax.swing.JFrame {
      */
     public LoginForm1() {
         initComponents();
+        loginFailedLabel.setVisible(false);
+        setLocationRelativeTo(null);
+        
         ConnectDatabase.connectdb();
     }
 
@@ -43,137 +44,277 @@ public class LoginForm1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        rightLoginPanel = new javax.swing.JPanel();
+        exit = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        matrixNoField = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        usernameTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        passwordTextField = new javax.swing.JPasswordField();
+        jSeparator2 = new javax.swing.JSeparator();
+        resetBttn = new javax.swing.JButton();
+        loginBttn = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
+        loginFailedLabel = new javax.swing.JLabel();
+        LeftLoginPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        registerLink = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Log In Page");
+        rightLoginPanel.setBackground(new java.awt.Color(80, 101, 177));
+        rightLoginPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(244, 247, 252), 2));
+        rightLoginPanel.setForeground(new java.awt.Color(244, 247, 252));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("USERNAME :");
+        exit.setBackground(new java.awt.Color(80, 101, 177));
+        exit.setFont(new java.awt.Font("Readex Pro Medium", 1, 14)); // NOI18N
+        exit.setForeground(new java.awt.Color(244, 247, 252));
+        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exit.setText("X");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(80, 101, 177));
+        jLabel1.setFont(new java.awt.Font("Readex Pro Medium", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(244, 247, 252));
+        jLabel1.setText("MATRIX NO :");
+
+        matrixNoField.setBackground(new java.awt.Color(80, 101, 177));
+        matrixNoField.setFont(new java.awt.Font("Readex Pro Light", 0, 18)); // NOI18N
+        matrixNoField.setForeground(new java.awt.Color(244, 247, 252));
+        matrixNoField.setBorder(null);
+
+        jSeparator1.setForeground(new java.awt.Color(244, 247, 252));
+
+        jLabel3.setBackground(new java.awt.Color(80, 101, 177));
+        jLabel3.setFont(new java.awt.Font("Readex Pro Medium", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(244, 247, 252));
         jLabel3.setText("PASSWORD :");
 
-        usernameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameTextFieldActionPerformed(evt);
+        jSeparator2.setForeground(new java.awt.Color(244, 247, 252));
+
+        resetBttn.setBackground(new java.awt.Color(80, 101, 177));
+        resetBttn.setFont(new java.awt.Font("Readex Pro Medium", 0, 14)); // NOI18N
+        resetBttn.setForeground(new java.awt.Color(244, 247, 252));
+        resetBttn.setText("RESET");
+        resetBttn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(244, 247, 252)));
+        resetBttn.setContentAreaFilled(false);
+        resetBttn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        resetBttn.setFocusPainted(false);
+        resetBttn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resetBttnMouseClicked(evt);
             }
         });
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        loginBttn.setBackground(new java.awt.Color(80, 101, 177));
+        loginBttn.setFont(new java.awt.Font("Readex Pro Medium", 0, 14)); // NOI18N
+        loginBttn.setForeground(new java.awt.Color(244, 247, 252));
+        loginBttn.setText("LOGIN");
+        loginBttn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(244, 247, 252)));
+        loginBttn.setContentAreaFilled(false);
+        loginBttn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginBttn.setFocusPainted(false);
+        loginBttn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginBttnMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        passwordField.setBackground(new java.awt.Color(80, 101, 177));
+        passwordField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(244, 247, 252));
+        passwordField.setBorder(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        loginFailedLabel.setBackground(new java.awt.Color(80, 101, 177));
+        loginFailedLabel.setFont(new java.awt.Font("Readex Pro Medium", 0, 18)); // NOI18N
+        loginFailedLabel.setForeground(new java.awt.Color(114, 30, 53));
+        loginFailedLabel.setText("Login Failed");
+
+        javax.swing.GroupLayout rightLoginPanelLayout = new javax.swing.GroupLayout(rightLoginPanel);
+        rightLoginPanel.setLayout(rightLoginPanelLayout);
+        rightLoginPanelLayout.setHorizontalGroup(
+            rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightLoginPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightLoginPanelLayout.createSequentialGroup()
+                .addContainerGap(141, Short.MAX_VALUE)
+                .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(rightLoginPanelLayout.createSequentialGroup()
+                        .addComponent(loginFailedLabel)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usernameTextField)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2))
-                            .addComponent(passwordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(loginBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                        .addComponent(jSeparator2)))
+                .addGap(137, 137, 137))
+            .addGroup(rightLoginPanelLayout.createSequentialGroup()
+                .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rightLoginPanelLayout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)))
+                    .addGroup(rightLoginPanelLayout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator1)
+                            .addComponent(matrixNoField, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        rightLoginPanelLayout.setVerticalGroup(
+            rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightLoginPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(exit)
+                .addGap(179, 179, 179)
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addComponent(matrixNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(rightLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginFailedLabel))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        getContentPane().add(rightLoginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, 683, 783));
+
+        LeftLoginPanel.setBackground(new java.awt.Color(244, 247, 252));
+        LeftLoginPanel.setForeground(new java.awt.Color(244, 247, 252));
+
+        jLabel4.setBackground(new java.awt.Color(80, 101, 177));
+        jLabel4.setFont(new java.awt.Font("Readex Pro Medium", 0, 70)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(80, 101, 177));
+        jLabel4.setText("MAYA 2.0");
+
+        jLabel5.setBackground(new java.awt.Color(80, 101, 177));
+        jLabel5.setFont(new java.awt.Font("Readex Pro Medium", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(80, 101, 177));
+        jLabel5.setText("LOGIN PAGE");
+
+        registerLink.setBackground(new java.awt.Color(80, 101, 177));
+        registerLink.setFont(new java.awt.Font("Readex Pro Medium", 2, 16)); // NOI18N
+        registerLink.setForeground(new java.awt.Color(96, 111, 137));
+        registerLink.setText("Click here if you have not registered as a user ");
+        registerLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registerLink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerLinkMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                registerLinkMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                registerLinkMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout LeftLoginPanelLayout = new javax.swing.GroupLayout(LeftLoginPanel);
+        LeftLoginPanel.setLayout(LeftLoginPanelLayout);
+        LeftLoginPanelLayout.setHorizontalGroup(
+            LeftLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeftLoginPanelLayout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(LeftLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(LeftLoginPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel5))
+                    .addComponent(registerLink, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        LeftLoginPanelLayout.setVerticalGroup(
+            LeftLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeftLoginPanelLayout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 367, Short.MAX_VALUE)
+                .addComponent(registerLink)
+                .addGap(89, 89, 89))
         );
+
+        getContentPane().add(LeftLoginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 683, 783));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameTextFieldActionPerformed
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void resetBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetBttnMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        matrixNoField.setText("");
+        passwordField.setText("");
+    }//GEN-LAST:event_resetBttnMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String login = "SELECT * FROM logintable WHERE username = ? AND password = ?";
+    private void loginBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBttnMouseClicked
+        String login = "SELECT * FROM logintable WHERE matrix_number = ? AND password = ?";
         try {
+            loginFailedLabel.setVisible(false);
             ps = con.prepareStatement(login);
-            ps.setString(1, usernameTextField.getText());
-            ps.setString(2, passwordTextField.getText());
+            ps.setString(1, matrixNoField.getText());
+            ps.setString(2, String.valueOf(passwordField.getPassword()));
             rs = ps.executeQuery();
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Login Successful!");
-                String inputtedUserName = usernameTextField.getText();
+//                JOptionPane.showMessageDialog(null, "Login Successful!");
+                String inputtedUserName = matrixNoField.getText();
                 setUserName(inputtedUserName);
                 dispose();
                 new WelcomePage().setVisible(true);
             }else{
-                JOptionPane.showMessageDialog(null, "Login Failed");
+                loginFailedLabel.setVisible(true);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_loginBttnMouseClicked
+
+    private void registerLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLinkMouseClicked
+        // TODO add your handling code here:
+
+//        RegisterUserPage rup = new RegisterUserPage();
+        dispose();
+    }//GEN-LAST:event_registerLinkMouseClicked
+
+    private void registerLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLinkMouseEntered
+        // TODO add your handling code here:
+        registerLink.setForeground(new java.awt.Color(80,101,177));
+    }//GEN-LAST:event_registerLinkMouseEntered
+
+    private void registerLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerLinkMouseExited
+        // TODO add your handling code here:
+
+        registerLink.setForeground(new java.awt.Color(96,111,137));
+    }//GEN-LAST:event_registerLinkMouseExited
 
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -207,13 +348,40 @@ public class LoginForm1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel LeftLoginPanel;
+    private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField passwordTextField;
-    private javax.swing.JTextField usernameTextField;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JButton loginBttn;
+    private javax.swing.JLabel loginFailedLabel;
+    private javax.swing.JTextField matrixNoField;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel registerLink;
+    private javax.swing.JButton resetBttn;
+    private javax.swing.JPanel rightLoginPanel;
     // End of variables declaration//GEN-END:variables
 }
+/*
+String login = "SELECT * FROM logintable WHERE username = ? AND password = ?";
+        try {
+            ps = con.prepareStatement(login);
+            ps.setString(1, usernameTextField.getText());
+            ps.setString(2, passwordTextField.getText());
+            rs = ps.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Login Successful!");
+                String inputtedUserName = usernameTextField.getText();
+                setUserName(inputtedUserName);
+                dispose();
+                new WelcomePage().setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Login Failed");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+*/
