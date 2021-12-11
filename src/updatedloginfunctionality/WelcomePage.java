@@ -5,6 +5,8 @@
 package updatedloginfunctionality;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -17,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class WelcomePage extends javax.swing.JFrame {
 
-    Connection con = ConnectDatabase.connectdb();
+    Connection con;
     PreparedStatement ps = null;
     ResultSet rs = null;
     LoginForm1 lf = new LoginForm1();
@@ -27,22 +29,38 @@ public class WelcomePage extends javax.swing.JFrame {
      * Creates new form WelcomePage
      */
     public WelcomePage() {
-        ConnectDatabase.connectdb();
+        con = ConnectDatabase.connectdb();
         initComponents();
-        setUsername();
+
+        try {
+            setUserName();
+        } catch (SQLException ex) {
+            Logger.getLogger(WelcomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         retrieveData();
     }
-    
-    public void setModuleCode(String moduleCode){
+
+    public void setModuleCode(String moduleCode) {
         this.moduleCode = moduleCode;
     }
-    
-    public String getModuleCode(){
+
+    public String getModuleCode() {
         return moduleCode;
     }
 
-    public void setUsername() {
-        jLabel1.setText("Welcome " + lf.getUserName() + "!");
+    public void setUserName() throws SQLException {
+        String query = "SELECT fullname FROM logintable WHERE matrix_number = '" + lf.getMatrixNo() + "'";
+        try {
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            rs.next();
+            String name = rs.getString("fullname");
+            usernameLabel.setText(name + " !");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     public void retrieveData() {
@@ -54,7 +72,7 @@ public class WelcomePage extends javax.swing.JFrame {
                 String MODULES = rs.getString("MODULE");
                 String CREDIT = rs.getString("CREDIT");
                 String ACTIVITY = rs.getString("ACTIVITY");
-                
+
                 String tbData[] = {MODULES, CREDIT, ACTIVITY};
                 DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
 
@@ -79,11 +97,12 @@ public class WelcomePage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        usernameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("PLACEHOLDER");
+        jLabel1.setText("WELCOME");
 
         jButton1.setText("🔎");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,30 +127,40 @@ public class WelcomePage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        usernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        usernameLabel.setText("PLACEHOLDER");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(161, 161, 161)
-                .addComponent(jLabel1)
-                .addContainerGap(148, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
                 .addGap(18, 18, 18))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(171, 171, 171)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addGap(76, 76, 76)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(usernameLabel)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
@@ -151,7 +180,7 @@ public class WelcomePage extends javax.swing.JFrame {
         JTable source = (JTable) evt.getSource();
         int row = source.rowAtPoint(evt.getPoint());
         int column = 0;
-        String moduleCode = source.getModel().getValueAt(row,column) + "";
+        String moduleCode = source.getModel().getValueAt(row, column) + "";
         setModuleCode(moduleCode);
         new ModuleDetails().setVisible(true);
         //JOptionPane.showMessageDialog(null, moduleCode);
@@ -187,7 +216,7 @@ public class WelcomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WelcomePage().setVisible(true);
+//                new WelcomePage().setVisible(true);
             }
         });
     }
@@ -198,5 +227,6 @@ public class WelcomePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

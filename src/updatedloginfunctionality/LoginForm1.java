@@ -12,15 +12,15 @@ public class LoginForm1 extends javax.swing.JFrame {
     Connection con = ConnectDatabase.connectdb();
     PreparedStatement ps = null;
     ResultSet rs = null;
-    static String userName = "PLACEHOLDER";
+    static String matrixNo = "PLACEHOLDER";
 
     //UI stuff
-    public void setUserName(String inputtedUserName) {
-        this.userName = inputtedUserName;
+    public void setMatrixNo(String inputtedMatrixNo) {
+        this.matrixNo = inputtedMatrixNo;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getMatrixNo() {
+        return matrixNo;
     }
 
     /**
@@ -280,8 +280,8 @@ public class LoginForm1 extends javax.swing.JFrame {
             rs = ps.executeQuery();
             if (rs.next()) {
 //                JOptionPane.showMessageDialog(null, "Login Successful!");
-                String inputtedUserName = matrixNoField.getText();
-                setUserName(inputtedUserName);
+                String inputtedMatrixNo = matrixNoField.getText();
+                setMatrixNo(inputtedMatrixNo);
                 dispose();
                 new WelcomePage().setVisible(true);
             } else {

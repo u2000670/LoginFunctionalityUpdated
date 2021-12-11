@@ -27,6 +27,7 @@ public class RegisterForm extends javax.swing.JFrame {
         initComponents();
         emptyFieldLabel.setVisible(false);
         registerSuccessLabel.setVisible(false);
+        duplicateMatrixLabel.setVisible(false);
         setVisible(true);
         con = ConnectDatabase.connectdb();
     }
@@ -60,6 +61,7 @@ public class RegisterForm extends javax.swing.JFrame {
         emptyFieldLabel = new javax.swing.JLabel();
         registerSuccessLabel = new javax.swing.JLabel();
         returnToLoginLabel = new javax.swing.JLabel();
+        duplicateMatrixLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -320,6 +322,11 @@ public class RegisterForm extends javax.swing.JFrame {
             }
         });
 
+        duplicateMatrixLabel.setBackground(new java.awt.Color(96, 111, 137));
+        duplicateMatrixLabel.setFont(new java.awt.Font("Readex Pro Medium", 0, 14)); // NOI18N
+        duplicateMatrixLabel.setForeground(new java.awt.Color(145, 38, 67));
+        duplicateMatrixLabel.setText("The entered matrix no. has already registered");
+
         javax.swing.GroupLayout messagePanelLayout = new javax.swing.GroupLayout(messagePanel);
         messagePanel.setLayout(messagePanelLayout);
         messagePanelLayout.setHorizontalGroup(
@@ -342,9 +349,11 @@ public class RegisterForm extends javax.swing.JFrame {
                         .addComponent(returnToLoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(messagePanelLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addGroup(messagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(registerSuccessLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emptyFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(messagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(duplicateMatrixLabel)
+                            .addGroup(messagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(registerSuccessLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emptyFieldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(260, Short.MAX_VALUE))
         );
         messagePanelLayout.setVerticalGroup(
@@ -358,9 +367,11 @@ public class RegisterForm extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(emptyFieldLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(duplicateMatrixLabel)
+                .addGap(18, 18, 18)
                 .addComponent(registerSuccessLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 438, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 408, Short.MAX_VALUE)
                 .addComponent(returnToLoginLabel)
                 .addGap(49, 49, 49))
         );
@@ -413,13 +424,28 @@ public class RegisterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_specializationLabelMouseExited
 
     private void registerBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerBttnMouseClicked
-        //checking if any of the fields are empty
-        if (fullNameField.getText().trim().length() == 0 || String.valueOf(passwordRegisterField.getPassword()).trim().length() == 0 || matrixNoField.getText().trim().length() == 0) {
-            emptyFieldLabel.setVisible(true);
-        } else {
 
-            try {
-                String query = "INSERT INTO logintable values(?,?,?,?,?,?)";
+        try {
+            //check if entered matrix no. is already registered or not
+            // it's not placed in the else if block cuz i want to pass it in the else if condition
+            String q1 = "SELECT matrix_number FROM logintable where matrix_number = '" + matrixNoField.getText().toLowerCase() + "'";
+            ps = con.prepareStatement(q1);
+            rs = ps.executeQuery();
+            
+            //checking if any of the fields are empty
+            if (fullNameField.getText().trim().length() == 0
+                    || String.valueOf(passwordRegisterField.getPassword()).trim().length() == 0
+                    || matrixNoField.getText().trim().length() == 0) {
+
+                emptyFieldLabel.setVisible(true);
+            
+            //see if there are any rows (duplicate matrix no.) in rs
+            } else if (rs.next()) {
+                duplicateMatrixLabel.setVisible(true);
+
+            } else {
+
+                String q2 = "INSERT INTO logintable values(?,?,?,?,?,?)";
 
                 String fullName = fullNameField.getText();
                 String password = String.valueOf(passwordRegisterField.getPassword());
@@ -428,7 +454,7 @@ public class RegisterForm extends javax.swing.JFrame {
                 int special = Integer.parseInt(specializationMenu.getSelectedItem().toString());
                 int muetBand = Integer.parseInt(muetBandMenu.getSelectedItem().toString());
 
-                ps = con.prepareStatement(query);
+                ps = con.prepareStatement(q2);
                 ps.setString(1, matrixNo);
                 ps.setString(2, password);
                 ps.setInt(3, special);
@@ -436,12 +462,14 @@ public class RegisterForm extends javax.swing.JFrame {
                 ps.setString(5, fullName);
                 ps.setInt(6, degree);
                 ps.executeUpdate();
+
+                emptyFieldLabel.setVisible(false);
+                duplicateMatrixLabel.setVisible(false);
                 registerSuccessLabel.setVisible(true);
 
-            } catch (SQLException ex) {
-                Logger.getLogger(RegisterForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_registerBttnMouseClicked
 
@@ -508,6 +536,7 @@ public class RegisterForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel degreeLabel;
     private javax.swing.JComboBox<String> degreeMenu;
+    private javax.swing.JLabel duplicateMatrixLabel;
     private javax.swing.JLabel emptyFieldLabel;
     private javax.swing.JLabel exit;
     private javax.swing.JTextField fullNameField;

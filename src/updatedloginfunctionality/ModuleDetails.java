@@ -62,7 +62,7 @@ public class ModuleDetails extends javax.swing.JFrame {
         try {
             ps = con.prepareStatement(q1);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 String OCC = rs.getString("CREDIT");
                 jLabel1.setText("Credit hours: " + OCC);
             }
