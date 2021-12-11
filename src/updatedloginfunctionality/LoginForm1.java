@@ -82,7 +82,7 @@ public class LoginForm1 extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(80, 101, 177));
         jLabel1.setFont(new java.awt.Font("Readex Pro Medium", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(244, 247, 252));
-        jLabel1.setText("MATRIX NO :");
+        jLabel1.setText("MATRIX NO / STAFF ID :");
 
         matrixNoField.setBackground(new java.awt.Color(80, 101, 177));
         matrixNoField.setFont(new java.awt.Font("Readex Pro Light", 0, 18)); // NOI18N
@@ -271,9 +271,11 @@ public class LoginForm1 extends javax.swing.JFrame {
     }//GEN-LAST:event_resetBttnMouseClicked
 
     private void loginBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBttnMouseClicked
+        LoginFailedLabel.setVisible(false);
+        
         String login = "SELECT * FROM logintable WHERE matrix_number = ? AND password = ?";
         try {
-            LoginFailedLabel.setVisible(false);
+            
             ps = con.prepareStatement(login);
             ps.setString(1, matrixNoField.getText());
             ps.setString(2, String.valueOf(passwordField.getPassword()));
@@ -296,7 +298,7 @@ public class LoginForm1 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
 //        RegisterUserPage rup = new RegisterUserPage();
-        RegisterForm rf = new RegisterForm();
+        RegisterFormStudent rf = new RegisterFormStudent();
         dispose();
     }//GEN-LAST:event_registerLinkMouseClicked
 
