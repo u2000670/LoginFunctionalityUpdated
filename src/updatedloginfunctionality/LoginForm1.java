@@ -134,7 +134,7 @@ public class LoginForm1 extends javax.swing.JFrame {
         LoginFailedLabel.setBackground(new java.awt.Color(80, 101, 177));
         LoginFailedLabel.setFont(new java.awt.Font("Readex Pro Medium", 0, 18)); // NOI18N
         LoginFailedLabel.setForeground(new java.awt.Color(114, 30, 53));
-        LoginFailedLabel.setText("Login Failed");
+        LoginFailedLabel.setText("Wrong Password");
 
         javax.swing.GroupLayout rightLoginPanelLayout = new javax.swing.GroupLayout(rightLoginPanel);
         rightLoginPanel.setLayout(rightLoginPanelLayout);
@@ -272,7 +272,7 @@ public class LoginForm1 extends javax.swing.JFrame {
 
     private void loginBttnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBttnMouseClicked
         LoginFailedLabel.setVisible(false);
-        
+        //haven't figured out a way to check for staff id and staff password
         String login = "SELECT * FROM logintable WHERE matrix_number = ? AND password = ?";
         try {
             
@@ -286,7 +286,8 @@ public class LoginForm1 extends javax.swing.JFrame {
                 setMatrixNo(inputtedMatrixNo);
                 dispose();
                 new WelcomePage().setVisible(true);
-            } else {
+            }
+            else {
                 LoginFailedLabel.setVisible(true);
             }
         } catch (SQLException e) {
@@ -298,7 +299,7 @@ public class LoginForm1 extends javax.swing.JFrame {
         // TODO add your handling code here:
 
 //        RegisterUserPage rup = new RegisterUserPage();
-        RegisterFormStudent rf = new RegisterFormStudent();
+        RegisterForm rf = new RegisterForm();
         dispose();
     }//GEN-LAST:event_registerLinkMouseClicked
 
