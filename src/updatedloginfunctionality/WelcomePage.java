@@ -32,12 +32,12 @@ public class WelcomePage extends javax.swing.JFrame {
         setUsername();
         retrieveData();
     }
-    
-    public void setModuleCode(String moduleCode){
+
+    public void setModuleCode(String moduleCode) {
         this.moduleCode = moduleCode;
     }
-    
-    public String getModuleCode(){
+
+    public String getModuleCode() {
         return moduleCode;
     }
 
@@ -54,7 +54,7 @@ public class WelcomePage extends javax.swing.JFrame {
                 String MODULES = rs.getString("MODULE");
                 String CREDIT = rs.getString("CREDIT");
                 String ACTIVITY = rs.getString("ACTIVITY");
-                
+
                 String tbData[] = {MODULES, CREDIT, ACTIVITY};
                 DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
 
@@ -84,6 +84,17 @@ public class WelcomePage extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("PLACEHOLDER");
+
+        jTextField1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextField1PropertyChange(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTable1keyTypedEvent(evt);
+            }
+        });
 
         jButton1.setText("🔎");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +126,7 @@ public class WelcomePage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addComponent(jLabel1)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(624, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -151,11 +162,37 @@ public class WelcomePage extends javax.swing.JFrame {
         JTable source = (JTable) evt.getSource();
         int row = source.rowAtPoint(evt.getPoint());
         int column = 0;
-        String moduleCode = source.getModel().getValueAt(row,column) + "";
+        String moduleCode = source.getModel().getValueAt(row, column) + "";
         setModuleCode(moduleCode);
         new ModuleDetails().setVisible(true);
         //JOptionPane.showMessageDialog(null, moduleCode);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextField1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1PropertyChange
+
+    private void jTable1keyTypedEvent(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1keyTypedEvent
+        JOptionPane.showMessageDialog(null, "Yoo"); //
+        String typedText = jTextField1.getText();
+        String q1 = "SELECT * FROM VALID_MODULES WHERE MODULE LIKE '%" + typedText + "%'";
+        try {
+            ps = con.prepareStatement(q1);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String MODULES = rs.getString("MODULE");
+                String CREDIT = rs.getString("CREDIT");
+                String ACTIVITY = rs.getString("ACTIVITY");
+
+                String tbData[] = {MODULES, CREDIT, ACTIVITY};
+                DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+                tblModel.setRowCount(0);
+                tblModel.addRow(tbData);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jTable1keyTypedEvent
 
     /**
      * @param args the command line arguments

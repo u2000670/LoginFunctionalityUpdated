@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Faris Faiz
+ * ikhmal
  */
 public class ConnectDatabase {
     public static Connection connectdb() {
