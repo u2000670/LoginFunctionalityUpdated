@@ -151,16 +151,23 @@ public class LoginForm1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String login = "SELECT * FROM logintable WHERE username = ? AND password = ?";
+        String login = "SELECT * FROM logintable WHERE MATRIX_NUMBER = ? AND password = ?";
         try {
             ps = con.prepareStatement(login);
             ps.setString(1, usernameTextField.getText());
             ps.setString(2, passwordTextField.getText());
             rs = ps.executeQuery();
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Login Successful!");
+                
                 String inputtedUserName = usernameTextField.getText();
-                setUserName(inputtedUserName);
+                String fullName = "SELECT FULLNAME FROM logintable WHERE MATRIX_NUMBER = '" + inputtedUserName + "'";
+                ps = con.prepareStatement(fullName);
+                rs = ps.executeQuery();
+                while(rs.next()){
+                    String username = rs.getString("FULLNAME");
+                    setUserName(username);
+                    JOptionPane.showMessageDialog(null, "Welcome " + username + "!");
+                }
                 dispose();
                 new WelcomePage().setVisible(true);
             }else{
