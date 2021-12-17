@@ -304,14 +304,7 @@
     <Component class="javax.swing.JComboBox" name="txtSpec2">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="(Artificial Intelligence)"/>
-            <StringItem index="1" value="(Information Systems)"/>
-            <StringItem index="2" value="(Software Engineering)"/>
-            <StringItem index="3" value="(Computer System and Network)"/>
-            <StringItem index="4" value="(Multimedia)"/>
-            <StringItem index="5" value="(Data Science)"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>

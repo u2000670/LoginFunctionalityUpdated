@@ -126,7 +126,6 @@ public class adminPanel extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel10.setText("Specialization");
 
-        txtSpec2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "(Artificial Intelligence)", "(Information Systems)", "(Software Engineering)", "(Computer System and Network)", "(Multimedia)", "(Data Science)" }));
         txtSpec2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSpec2ActionPerformed(evt);
@@ -351,6 +350,11 @@ public class adminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(txtSpec1.getSelectedItem().toString().equals("COMPUTER SCIENCE")){
             txtSpec2.setVisible(true);
+            txtSpec2.addItem("(Artificial Intelligence)");
+            txtSpec2.addItem("(Information Systems)");
+            txtSpec2.addItem("(Software Engineering)");
+            txtSpec2.addItem("(Computer System and Network)");
+            txtSpec2.addItem("(Data Science)");
             txtSpec2.removeItem("(Multimedia)");
         }else if(txtSpec1.getSelectedItem().toString().equals("INFORMATION TECHNOLOGY")){
             txtSpec2.setVisible(true);
