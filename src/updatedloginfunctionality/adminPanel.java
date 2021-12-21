@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,8 +23,7 @@ public class adminPanel extends javax.swing.JFrame {
     Connection con = ConnectDatabase.connectdb();
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
-    
+
     public adminPanel() {
         initComponents();
         txtSpec2.setVisible(false);
@@ -75,7 +75,7 @@ public class adminPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1200, 2147483647));
-        setPreferredSize(new java.awt.Dimension(550, 618));
+        setPreferredSize(new java.awt.Dimension(1200, 618));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Edit.setText("View");
@@ -173,10 +173,7 @@ public class adminPanel extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Module Code", "credit", "activity", "occ", "muet", "degree", "dept.", "lecturer", "day", "start_time", "end_time"
@@ -184,7 +181,7 @@ public class adminPanel extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 650, 520));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 650, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -204,95 +201,116 @@ public class adminPanel extends javax.swing.JFrame {
         WelcomePageV2 wp2 = new WelcomePageV2();
         wp2.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_ExitActionPerformed
 
     private void addBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBttnActionPerformed
-        String coursecode = txtCode.getText().toUpperCase();  
-        String type = txtType.getSelectedItem().toString();
-        int credit = (int)txtCredit.getValue();
-        int muet = (int)txtMuet.getValue();
-        int occ = (int)txtOcc.getValue();
-        String spc1 = txtSpec1.getSelectedItem().toString();
-        String spc2;
-        int csit = -1;
-        int stype = -1; //to check for errors
-        if(spc1.equals("COMPUTER SCIENCE")){
-            csit = 1;
-        }else if(spc1.equals("ALL")){
-            csit = 0;   
-        }else{
-            csit = 2;
-        }
         
+            String coursecode = txtCode.getText().toUpperCase();
+            String type = txtType.getSelectedItem().toString();
+            int credit = (int) txtCredit.getValue();
+            int muet = (int) txtMuet.getValue();
+            int occ = (int) txtOcc.getValue();
+            String spc1 = txtSpec1.getSelectedItem().toString();
+            String spc2;
+            int csit = -1;
+            int stype = -1; //to check for errors
+            if (spc1.equals("COMPUTER SCIENCE")) {
+                csit = 1;
+            } else if (spc1.equals("ALL")) {
+                csit = 0;
+            } else {
+                csit = 2;
+            }
+
 //        if(spc2.equals("ALL")){
 //            stype = 0;
-        if (csit==1 || csit==2){
-            spc2 = txtSpec2.getSelectedItem().toString();
-            if(spc2.equals("Artificial Intelligence")){
-                stype = 2;   
-            }else if(spc2.equals("Information Systems")){
-                stype = 3;
-            }else if(spc2.equals("Computer System and Network")){
-                stype = 1;
-            }else if(spc2.equals("Multimedia")){
-                stype = 6;
-            }else if(spc2.equals("Data Science")){
-                stype = 5;
-            }else if(spc2.equals("Software Engineering")){
-                stype = 4;
-            }
-        }else
-            stype = 0;
-        
-        
-        
-               
-        
-       
-
-        try {
-/* inserting directly to VALID_MODULES
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            Connection con = (Connection) DriverManager.getConnection("jdbc:derby://localhost:1527/userlogin", "app", "app");
-            Statement st;
-            st = con.createStatement();
-            
-            String strQuery3 = "SELECT COUNT(*) FROM app.valid_modules where module='" + coursecode + "'";
-            ResultSet rs3 = st.executeQuery(strQuery3);
-            rs3.next();
-            String Countrow3 = rs3.getString(1);
-            System.out.println(Countrow3);
-            if (Countrow3.equals("0")) {
-                int i = st.executeUpdate("INSERT INTO APP.VALID_MODULES(MODULE,ACTIVITY,CREDIT,MUET,CSIT,STUDENTTYPE,OCC)VALUES('" + coursecode + "','" + type + "',"+credit+","+muet+","+csit+","+stype+","+occ+")");
-                JOptionPane.showMessageDialog(this, "Course Added");
+            if (csit == 1 || csit == 2) {
+                spc2 = txtSpec2.getSelectedItem().toString();
+                if (spc2.equals("Artificial Intelligence")) {
+                    stype = 2;
+                } else if (spc2.equals("Information Systems")) {
+                    stype = 3;
+                } else if (spc2.equals("Computer System and Network")) {
+                    stype = 1;
+                } else if (spc2.equals("Multimedia")) {
+                    stype = 6;
+                } else if (spc2.equals("Data Science")) {
+                    stype = 5;
+                } else if (spc2.equals("Software Engineering")) {
+                    stype = 4;
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Added course already exists!");
+                stype = 0;
             }
 
-            // }
-            //}
-*/          int occCount = 1;
+            try {
+                /* inserting directly to VALID_MODULES
+    Class.forName("org.apache.derby.jdbc.ClientDriver");
+    Connection con = (Connection) DriverManager.getConnection("jdbc:derby://localhost:1527/userlogin", "app", "app");
+    Statement st;
+    st = con.createStatement();
+    
+    String strQuery3 = "SELECT COUNT(*) FROM app.valid_modules where module='" + coursecode + "'";
+    ResultSet rs3 = st.executeQuery(strQuery3);
+    rs3.next();
+    String Countrow3 = rs3.getString(1);
+    System.out.println(Countrow3);
+    if (Countrow3.equals("0")) {
+    int i = st.executeUpdate("INSERT INTO APP.VALID_MODULES(MODULE,ACTIVITY,CREDIT,MUET,CSIT,STUDENTTYPE,OCC)VALUES('" + coursecode + "','" + type + "',"+credit+","+muet+","+csit+","+stype+","+occ+")");
+    JOptionPane.showMessageDialog(this, "Course Added");
+    } else {
+    JOptionPane.showMessageDialog(this, "Added course already exists!");
+    }
+    
+    // }
+    //}
+                 */ int occCount = 1;
 
 //            String q1 = "INSERT INTO app.new_modules (MODULE_CODE, CREDIT, ACTIVITY, OCC, MUET, CSIT, STUDENT_TYPE) VALUES ('" + coursecode + "', " + credit + ", '"+type+"',"+occCount+","+muet+","+csit+","+stype+") ";
 //            ps = con.prepareStatement(q1);
-            
-            while (occCount <= occ){
-                String q1 = "INSERT INTO app.new_modules (MODULE_CODE, CREDIT, ACTIVITY, OCC, MUET, CSIT, STUDENT_TYPE) VALUES ('" + coursecode + "', " + credit + ", '"+type+"',"+occCount+","+muet+","+csit+","+stype+") ";
-                ps = con.prepareStatement(q1);
-                ps.executeUpdate();
-                occCount++;
+                while (occCount <= occ) {
+                    String q1 = "INSERT INTO app.new_modules (MODULE_CODE, CREDIT, ACTIVITY, OCC, MUET, CSIT, STUDENT_TYPE) VALUES ('" + coursecode + "', " + credit + ", '" + type + "'," + occCount + "," + muet + "," + csit + "," + stype + ") ";
+                    ps = con.prepareStatement(q1);
+                    ps.executeUpdate();
+                    occCount++;
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Failed to Add Course" + credit + muet + csit + stype);
             }
-            
-          
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Failed to Add Course"+credit+muet+csit+stype);
+
+//displaying newly added modules
+        try{
+            String q2 = "SELECT * FROM new_modules";
+            ps = con.prepareStatement(q2);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String MODULES = rs.getString("MODULE_CODE");
+                String CREDIT = rs.getString("CREDIT");
+                String ACTIVITY = rs.getString("ACTIVITY");
+                String OCC = Integer.toString(rs.getInt("OCC"));
+                String MUET = Integer.toString(rs.getInt("MUET"));
+                String CSIT = Integer.toString(rs.getInt("CSIT"));
+                String STYPE = Integer.toString(rs.getInt("STUDENT_TYPE"));
+                
+
+                String tbData[] = {MODULES, CREDIT, ACTIVITY, OCC, MUET, CSIT, STYPE};
+                DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+
+                tblModel.addRow(tbData);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(adminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }//GEN-LAST:event_addBttnActionPerformed
 
     private void txtSpec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpec1ActionPerformed
         // TODO add your handling code here:
-        if(txtSpec1.getSelectedItem().toString().equals("COMPUTER SCIENCE")){
+        if (txtSpec1.getSelectedItem().toString().equals("COMPUTER SCIENCE")) {
             txtSpec2.setVisible(true);
             txtSpec2.addItem("Artificial Intelligence");
             txtSpec2.addItem("Information Systems");
@@ -300,11 +318,11 @@ public class adminPanel extends javax.swing.JFrame {
             txtSpec2.addItem("Computer System and Network");
             txtSpec2.addItem("Data Science");
             txtSpec2.removeItem("Multimedia");
-        }else if(txtSpec1.getSelectedItem().toString().equals("INFORMATION TECHNOLOGY")){
+        } else if (txtSpec1.getSelectedItem().toString().equals("INFORMATION TECHNOLOGY")) {
             txtSpec2.setVisible(true);
             txtSpec2.removeAllItems();
-            txtSpec2.addItem("Multimedia");  
-        } else{
+            txtSpec2.addItem("Multimedia");
+        } else {
             txtSpec2.setVisible(false);
         }
     }//GEN-LAST:event_txtSpec1ActionPerformed
