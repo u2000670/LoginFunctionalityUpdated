@@ -7,10 +7,18 @@ package updatedloginfunctionality;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,7 +49,7 @@ public class adminPanel extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        Edit = new javax.swing.JButton();
+        view = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,7 +57,6 @@ public class adminPanel extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
         Exit = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         addBttn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -62,6 +69,19 @@ public class adminPanel extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        extraDetailsPanel = new javax.swing.JPanel();
+        Date date = new Date();
+        SpinnerDateModel sm1 = new SpinnerDateModel(date,null,null, Calendar.HOUR_OF_DAY);
+        startSpin = new javax.swing.JSpinner(sm1);
+        SpinnerDateModel sm2 = new SpinnerDateModel(date,null,null, Calendar.HOUR_OF_DAY);
+        endSpin = new javax.swing.JSpinner(sm2);
+        jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtLect = new javax.swing.JTextField();
+        txtDay = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel12.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel12.setText("Which Department");
@@ -75,43 +95,34 @@ public class adminPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1200, 2147483647));
-        setPreferredSize(new java.awt.Dimension(1200, 618));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Edit.setText("View");
-        Edit.addActionListener(new java.awt.event.ActionListener() {
+        view.setText("View");
+        view.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditActionPerformed(evt);
+                viewActionPerformed(evt);
             }
         });
-        getContentPane().add(Edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 433, 105, 50));
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel5.setText("Credit Hour (s)");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 162, 148, -1));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ADD MODULE COURSE INFORMATION");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 44, 394, 30));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel3.setText("Course Code");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 121, 120, -1));
 
         txtType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LECTURE", "TUTORIAL", "LAB", "LECTURE, TUTORIAL, LAB", "LECTURE, TUTORIAL", "TUTORIAL, LAB" }));
-        getContentPane().add(txtType, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 202, 228, -1));
 
         jLabel8.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel8.setText("Select Activity");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 202, 148, -1));
 
         txtCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodeActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 121, 228, -1));
 
         Exit.setText("Back");
         Exit.addActionListener(new java.awt.event.ActionListener() {
@@ -119,10 +130,6 @@ public class adminPanel extends javax.swing.JFrame {
                 ExitActionPerformed(evt);
             }
         });
-        getContentPane().add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 8, -1, 30));
-
-        jButton1.setText("Delete");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 433, 105, 50));
 
         addBttn.setText("Add New");
         addBttn.addActionListener(new java.awt.event.ActionListener() {
@@ -130,25 +137,14 @@ public class adminPanel extends javax.swing.JFrame {
                 addBttnActionPerformed(evt);
             }
         });
-        getContentPane().add(addBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 433, 105, 50));
 
         jLabel9.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel9.setText("MUET Requirement");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 280, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel10.setText("Specialization");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 320, 148, -1));
-
-        txtSpec2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSpec2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtSpec2, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 360, 228, -1));
 
         jLabel11.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 382, 303, -1));
 
         txtSpec1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "COMPUTER SCIENCE", "INFORMATION TECHNOLOGY" }));
         txtSpec1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,20 +152,15 @@ public class adminPanel extends javax.swing.JFrame {
                 txtSpec1ActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSpec1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 320, 228, -1));
 
         txtCredit.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        getContentPane().add(txtCredit, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 162, 228, -1));
 
         txtMuet.setModel(new javax.swing.SpinnerNumberModel(1, 1, 6, 1));
-        getContentPane().add(txtMuet, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 280, 228, -1));
 
         txtOcc.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
-        getContentPane().add(txtOcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 240, 228, -1));
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel6.setText("No. of Occurrences");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 240, 148, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,19 +169,223 @@ public class adminPanel extends javax.swing.JFrame {
             new String [] {
                 "Module Code", "credit", "activity", "occ", "muet", "degree", "dept.", "lecturer", "day", "start_time", "end_time"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 650, 520));
+        JSpinner.DateEditor de1 = new JSpinner.DateEditor(startSpin, "HH:mm");
+        startSpin.setEditor(de1);
+
+        JSpinner.DateEditor de2 = new JSpinner.DateEditor(endSpin, "HH:mm");
+        endSpin.setEditor(de2);
+
+        jLabel15.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        jLabel15.setText("End Time :");
+
+        jLabel14.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        jLabel14.setText("Start Time :");
+
+        txtLect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLectActionPerformed(evt);
+            }
+        });
+
+        txtDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "null", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" }));
+
+        jLabel13.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        jLabel13.setText("Day :");
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        jLabel4.setText("Lecturer :");
+
+        javax.swing.GroupLayout extraDetailsPanelLayout = new javax.swing.GroupLayout(extraDetailsPanel);
+        extraDetailsPanel.setLayout(extraDetailsPanelLayout);
+        extraDetailsPanelLayout.setHorizontalGroup(
+            extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extraDetailsPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(extraDetailsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(txtLect, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(extraDetailsPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel15)
+                            .addGap(124, 124, 124)
+                            .addComponent(endSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(extraDetailsPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(63, 63, 63)
+                            .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(extraDetailsPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel14)
+                            .addGap(124, 124, 124)
+                            .addComponent(startSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        extraDetailsPanelLayout.setVerticalGroup(
+            extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extraDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtLect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14)
+                    .addGroup(extraDetailsPanelLayout.createSequentialGroup()
+                        .addComponent(startSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(extraDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(endSpin, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(Exit)
+                .addGap(22, 22, 22)
+                .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 919, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(91, 91, 91)
+                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtOcc, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel9)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtMuet, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtSpec1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(225, 225, 225)
+                                .addComponent(txtSpec2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(extraDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(379, 379, 379)
+                        .addComponent(addBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(85, 85, 85)
+                .addComponent(jScrollPane2))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(txtCredit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtOcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtMuet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(txtSpec1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSpec2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(addBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(extraDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         adminModules db = new adminModules();
         db.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_EditActionPerformed
+    }//GEN-LAST:event_viewActionPerformed
 
     private void txtCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeActionPerformed
         // TODO add your handling code here:
@@ -293,9 +488,29 @@ public class adminPanel extends javax.swing.JFrame {
                 String MUET = Integer.toString(rs.getInt("MUET"));
                 String CSIT = Integer.toString(rs.getInt("CSIT"));
                 String STYPE = Integer.toString(rs.getInt("STUDENT_TYPE"));
+//                String LECT = rs.getString("LECTURER");
+                String LECT = "null";
+//                String DAY = rs.getString("DAY");
+                String DAY = "null";
+                String START_TIME ="";
+                String END_TIME ="";
                 
+                
+                DateFormat df = new SimpleDateFormat("HH:mm");
+                //if start_time & end_time is null
+                if(Objects.isNull(rs.getTime("START_TIME"))){
 
-                String tbData[] = {MODULES, CREDIT, ACTIVITY, OCC, MUET, CSIT, STYPE};
+                    START_TIME = "00:00";
+                    END_TIME = "00:00";
+                    System.out.println("entered if");
+                
+                } else{
+                    System.out.println("entered else");
+                    START_TIME = df.format(rs.getTime("START_TIME"));
+                    END_TIME = df.format(rs.getTime("END_TIME"));
+                }
+
+                String tbData[] = {MODULES, CREDIT, ACTIVITY, OCC, MUET, CSIT, STYPE, LECT, DAY, START_TIME, END_TIME};
                 DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
 
                 tblModel.addRow(tbData);
@@ -304,8 +519,14 @@ public class adminPanel extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(adminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
+        
+        // test table
+//        System.out.print("Model :");
+//        System.out.println(jTable1.getModel());
+//        int colEdit = jTable1.getEditingColumn();
+//        int rowEdit = jTable1.getEditingRow();
+//        System.out.println(colEdit+" "+rowEdit);
+        
     }//GEN-LAST:event_addBttnActionPerformed
 
     private void txtSpec1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpec1ActionPerformed
@@ -327,13 +548,37 @@ public class adminPanel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtSpec1ActionPerformed
 
-    private void txtSpec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpec2ActionPerformed
+    private void txtLectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLectActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSpec2ActionPerformed
+    }//GEN-LAST:event_txtLectActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try {
+            // TODO add your handling code here:
+            DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+            
+            String tblLect = tblModel.getValueAt(jTable1.getSelectedRow(), 7).toString();
+            String tblDay = tblModel.getValueAt(jTable1.getSelectedRow(), 8).toString();
+            String tblStart = tblModel.getValueAt(jTable1.getSelectedRow(), 9).toString();
+            String tblEnd = tblModel.getValueAt(jTable1.getSelectedRow(), 10).toString();
+            
+//Date date = new SimpleDateFormat("dd/mm/yyyy")
+//                        .parse(strDate);
+
+            txtLect.setText(tblLect);
+            txtDay.setSelectedItem(tblDay);
+            startSpin.setValue(new SimpleDateFormat("HH:mm").parse(tblStart));
+            endSpin.setValue(new SimpleDateFormat("HH:mm").parse(tblEnd));
+        } catch (ParseException ex) {
+            Logger.getLogger(adminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+    
+    
+    
+    
+    
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(new FlatIntelliJLaf());
@@ -350,15 +595,19 @@ public class adminPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Edit;
     private javax.swing.JButton Exit;
     private javax.swing.JButton addBttn;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JSpinner endSpin;
+    private javax.swing.JPanel extraDetailsPanel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -366,13 +615,18 @@ public class adminPanel extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JSpinner startSpin;
     private javax.swing.JTextField txtCode;
     private javax.swing.JSpinner txtCredit;
+    private javax.swing.JComboBox<String> txtDay;
+    private javax.swing.JTextField txtLect;
     private javax.swing.JSpinner txtMuet;
     private javax.swing.JSpinner txtOcc;
     private javax.swing.JComboBox<String> txtSpec1;
     private javax.swing.JComboBox<String> txtSpec2;
     private javax.swing.JComboBox<String> txtType;
+    private javax.swing.JButton view;
     // End of variables declaration//GEN-END:variables
 }
