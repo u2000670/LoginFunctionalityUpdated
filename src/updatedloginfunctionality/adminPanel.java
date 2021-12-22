@@ -32,13 +32,13 @@ public class adminPanel extends javax.swing.JFrame {
     PreparedStatement ps = null;
     ResultSet rs = null;
 //    String[] activities;
-    
+
     public adminPanel() {
         initComponents();
         txtSpec2.setVisible(false);
         extraDetailsPanel.setVisible(false);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -119,12 +119,6 @@ public class adminPanel extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel8.setText("Select Activity");
 
-        txtCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodeActionPerformed(evt);
-            }
-        });
-
         Exit.setText("Back");
         Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,12 +138,6 @@ public class adminPanel extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel10.setText("Specialization");
-
-        txtSpec2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSpec2ActionPerformed(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
 
@@ -203,12 +191,6 @@ public class adminPanel extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel14.setText("Start Time :");
-
-        txtLect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLectActionPerformed(evt);
-            }
-        });
 
         txtDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "null", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" }));
 
@@ -300,18 +282,8 @@ public class adminPanel extends javax.swing.JFrame {
         });
 
         labBox.setText("lab");
-        labBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                labBoxActionPerformed(evt);
-            }
-        });
 
         tutoBox.setText("tuto");
-        tutoBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tutoBoxActionPerformed(evt);
-            }
-        });
 
         lectBox.setText("lect");
 
@@ -328,85 +300,82 @@ public class adminPanel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Exit)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91)
+                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(txtCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tutoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labBox, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(txtOcc, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel9)
+                        .addGap(62, 62, 62)
+                        .addComponent(txtMuet, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(txtSpec1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(txtSpec2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(addBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(view)
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(91, 91, 91)
-                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(txtCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tutoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(254, 254, 254)
-                                .addComponent(labBox, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(txtOcc, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel9)
-                                .addGap(62, 62, 62)
-                                .addComponent(txtMuet, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(txtSpec1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(244, 244, 244)
-                                .addComponent(txtSpec2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(174, 174, 174)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(374, 374, 374)
-                                .addComponent(addBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(extraDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(publishBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
-                                .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Exit)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(deleteBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                                .addComponent(view))
+                            .addComponent(extraDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(publishBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deleteBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -422,10 +391,10 @@ public class adminPanel extends javax.swing.JFrame {
                         .addComponent(jLabel8))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lectBox)
-                        .addGap(10, 10, 10)
-                        .addComponent(tutoBox)))
-                .addComponent(labBox)
-                .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tutoBox)
+                        .addComponent(labBox)))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(txtOcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -461,12 +430,8 @@ public class adminPanel extends javax.swing.JFrame {
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         adminModules db = new adminModules();
         db.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_viewActionPerformed
-
-    private void txtCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodeActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
@@ -545,16 +510,17 @@ public class adminPanel extends javax.swing.JFrame {
             System.out.println(Countrow3);
             if (Countrow3.equals("0")) {
                 for (String activity : type) {
-                    if (activity.equals(""))
+                    if (activity.equals("")) {
                         continue;
+                    }
                     int occCount = 1;
                     while (occCount <= occ) {
-                    String q1 = "INSERT INTO app.new_modules (MODULE_CODE, CREDIT, ACTIVITY, OCC, MUET, CSIT, STUDENT_TYPE) VALUES ('" + coursecode + "', " + credit + ", '" + activity + "'," + occCount + "," + muet + "," + csit + "," + stype + ") ";
-                    ps = con.prepareStatement(q1);
-                    ps.executeUpdate();
-                    occCount++;
-                }
-                
+                        String q1 = "INSERT INTO app.new_modules (MODULE_CODE, CREDIT, ACTIVITY, OCC, MUET, CSIT, STUDENT_TYPE) VALUES ('" + coursecode + "', " + credit + ", '" + activity + "'," + occCount + "," + muet + "," + csit + "," + stype + ") ";
+                        ps = con.prepareStatement(q1);
+                        ps.executeUpdate();
+                        occCount++;
+                    }
+
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Added course already exists!");
@@ -630,8 +596,8 @@ public class adminPanel extends javax.swing.JFrame {
                 String tblOcc = tblModel.getValueAt(jTable1.getSelectedRow(), 3).toString();
 
                 String q1 = "UPDATE new_modules "
-                + "SET lecturer = '" + lect + "', day = '" + day + "',start_time = '" + startT + "', end_time = '" + endT + "'"
-                + "WHERE module_code = '"+tblModule+"' AND activity = '"+tblAct+"' AND occ = "+tblOcc;
+                        + "SET lecturer = '" + lect + "', day = '" + day + "',start_time = '" + startT + "', end_time = '" + endT + "'"
+                        + "WHERE module_code = '" + tblModule + "' AND activity = '" + tblAct + "' AND occ = " + tblOcc;
                 ps = con.prepareStatement(q1);
                 ps.executeUpdate();
             } catch (SQLException ex) {
@@ -643,10 +609,6 @@ public class adminPanel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateBttnActionPerformed
 
-    private void txtLectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLectActionPerformed
-
     private void deleteBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBttnActionPerformed
         // TODO add your handling code here:
         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
@@ -654,51 +616,40 @@ public class adminPanel extends javax.swing.JFrame {
         if (jTable1.getSelectedRowCount() == 1) {
 
             try {
-                
+
                 String tblModule = tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
                 String tblAct = tblModel.getValueAt(jTable1.getSelectedRow(), 2).toString();
                 String tblOcc = tblModel.getValueAt(jTable1.getSelectedRow(), 3).toString();
 
                 String q1 = "DELETE FROM new_modules "
-                        + "WHERE module_code = '"+tblModule+"' AND activity = '"+tblAct+"' AND occ = "+tblOcc;
+                        + "WHERE module_code = '" + tblModule + "' AND activity = '" + tblAct + "' AND occ = " + tblOcc;
                 ps = con.prepareStatement(q1);
                 ps.executeUpdate();
             } catch (SQLException ex) {
                 Logger.getLogger(adminPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         displayTable();
     }//GEN-LAST:event_deleteBttnActionPerformed
 
     private void publishBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publishBttnActionPerformed
         // TODO add your handling code here:
+        //publish to valid_modules
     }//GEN-LAST:event_publishBttnActionPerformed
-
-    private void labBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labBoxActionPerformed
-
-    private void tutoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutoBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tutoBoxActionPerformed
-
-    private void txtSpec2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpec2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSpec2ActionPerformed
 
     private void resetBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBttnActionPerformed
         try {
             // TODO add your handling code here:
             String q1 = "DELETE FROM new_modules WHERE 1=1";
-            
+
             ps = con.prepareStatement(q1);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(adminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         displayTable();
-        
+
     }//GEN-LAST:event_resetBttnActionPerformed
 
     private void displayTable() {
@@ -715,12 +666,43 @@ public class adminPanel extends javax.swing.JFrame {
                 String ACTIVITY = rs.getString("ACTIVITY");
                 String OCC = Integer.toString(rs.getInt("OCC"));
                 String MUET = Integer.toString(rs.getInt("MUET"));
-                String CSIT = Integer.toString(rs.getInt("CSIT"));
-                String STYPE = Integer.toString(rs.getInt("STUDENT_TYPE"));
+                int csitNum = rs.getInt("CSIT");
+                int stypeNum = rs.getInt("STUDENT_TYPE");
+                System.out.println(stypeNum);
                 String LECT = "";
                 String DAY = "";
                 String START_TIME = "";
                 String END_TIME = "";
+
+                String CSIT = switch (csitNum) {
+                    case 0 ->
+                        "General";
+                    case 1 ->
+                        "CS";
+                    case 2 ->
+                        "IT";
+                    default ->
+                        "null";
+                };
+
+                String STYPE = switch (stypeNum) {
+                    case 0 ->
+                        "General";
+                    case 1 ->
+                        "CSN";
+                    case 2 ->
+                        "AI";
+                    case 3 ->
+                        "IS";
+                    case 4 ->
+                        "SE";
+                    case 5 ->
+                        "DS";
+                    case 6 ->
+                        "MM";
+                    default ->
+                        "null";
+                };
 
                 if (Objects.isNull(rs.getString("LECTURER"))) {
                     LECT = "null";
@@ -756,54 +738,55 @@ public class adminPanel extends javax.swing.JFrame {
         }
     }
 
-    private String[] getActivity(){
-    
-        String[] activities = new String [3];
-        
-        if (lectBox.isSelected() && !tutoBox.isSelected() && !labBox.isSelected()){
+    private String[] getActivity() {
+
+        String[] activities = new String[3];
+
+        if (lectBox.isSelected() && !tutoBox.isSelected() && !labBox.isSelected()) {
             activities[0] = "LECTURE";
             activities[1] = "";
             activities[2] = "";
             System.out.println("1 selected");
 
-        }else if (tutoBox.isSelected() && !lectBox.isSelected() && !labBox.isSelected()){
+        } else if (tutoBox.isSelected() && !lectBox.isSelected() && !labBox.isSelected()) {
             activities[0] = "TUTORIAL";
             activities[1] = "";
             activities[2] = "";
             System.out.println("1 selected");
-            
-        }else if (labBox.isSelected()&& !lectBox.isSelected() && !tutoBox.isSelected()){
+
+        } else if (labBox.isSelected() && !lectBox.isSelected() && !tutoBox.isSelected()) {
             activities[0] = "LAB";
             activities[1] = "";
             activities[2] = "";
             System.out.println("1 selected");
-        }else if (lectBox.isSelected() && tutoBox.isSelected() && !labBox.isSelected()){
+        } else if (lectBox.isSelected() && tutoBox.isSelected() && !labBox.isSelected()) {
             System.out.println("2 selected");
             activities[0] = "LECTURE";
             activities[1] = "TUTORIAL";
             activities[2] = "";
-        }else if (lectBox.isSelected() && labBox.isSelected() && !tutoBox.isSelected()){
+        } else if (lectBox.isSelected() && labBox.isSelected() && !tutoBox.isSelected()) {
             System.out.println("2 selected");
             activities[0] = "LECTURE";
-            activities[1] = "LAB";            
+            activities[1] = "LAB";
             activities[2] = "";
 
-        }else if (tutoBox.isSelected() && labBox.isSelected() && !lectBox.isSelected()){
+        } else if (tutoBox.isSelected() && labBox.isSelected() && !lectBox.isSelected()) {
             System.out.println("2 selected");
             activities[0] = "TUTORIAL";
             activities[1] = "LAB";
             activities[2] = "";
-        } else if (lectBox.isSelected() && tutoBox.isSelected() && labBox.isSelected()){
+        } else if (lectBox.isSelected() && tutoBox.isSelected() && labBox.isSelected()) {
             System.out.println("allselected");
             activities[0] = "LECTURE";
             activities[1] = "TUTORIAL";
             activities[2] = "LAB";
-        }else
+        } else {
             JOptionPane.showMessageDialog(this, "Please select activity");
+        }
         return activities;
-    
+
     }
-    
+
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(new FlatIntelliJLaf());
