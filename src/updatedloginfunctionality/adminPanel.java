@@ -150,7 +150,7 @@ public class adminPanel extends javax.swing.JFrame {
 
         txtCredit.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
 
-        txtMuet.setModel(new javax.swing.SpinnerNumberModel(1, 1, 6, 1));
+        txtMuet.setModel(new javax.swing.SpinnerNumberModel(0, 0, 6, 1));
 
         txtOcc.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
 
@@ -363,8 +363,7 @@ public class adminPanel extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(resetBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deleteBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(deleteBttn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
@@ -393,6 +392,7 @@ public class adminPanel extends javax.swing.JFrame {
                         .addComponent(lectBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tutoBox)
+                        .addGap(0, 0, 0)
                         .addComponent(labBox)))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -612,7 +612,10 @@ public class adminPanel extends javax.swing.JFrame {
     private void deleteBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBttnActionPerformed
         // TODO add your handling code here:
         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
-
+//            for (int i = 0; i < arr.length; i++) { // for deleting multiple rows
+            
+            
+        
         if (jTable1.getSelectedRowCount() == 1) {
 
             try {
